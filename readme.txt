@@ -40,4 +40,7 @@ In contrast to similar plugins, this one does not use Javascript.
 * Additional countries: Mexico, Brazil, Australia, India
 * Fallback URL, when there is no affiliate id for the resolved country
 * Support for associate subtag
-* 
+
+= 1.3 =
+* Fix for Amazon HTTPS URLs
+* Improve usability in configuration
