@@ -1,11 +1,11 @@
 <?php   
     /* 
     Plugin Name: Amazon Affiliate Link Globalizer
-    Plugin URI: http://www.affiliate-geo-target.com/amazon-wordpress-plugin.html
-    Version: 1.2
+    Plugin URI: https://www.affiliate-geo-target.com/amazon-wordpress-plugin.html
+    Version: 1.3
     Description: Rewrites Amazon.com/Amzn.com links to the <a href="http://A-FWD.com">A-FWD</a> webservice. This webservice performs user IP Geolocation and forwards the visitor to 'their' country specific Amazon store. In contrast to similar plugins, this plugin does not use any Javascript and does not perform external HTTP requests by itself.
     Author: Attila Gyoerkoes, Markus Goetz (Woboq)
-    Author URI: http://www.woboq.com/
+    Author URI: https://www.woboq.com/
     License: GNU General Public License v2 or later
     License URI: http://www.gnu.org/licenses/gpl-2.0.html
     */  
@@ -34,7 +34,7 @@ if(!class_exists('WAALG'))
          * @var string
          * @see link_replacer
          */
-        const amzn_asin_pattern  = '#(?:http:\/\/)?(?:www\.)?(?:(?:amazon\.com/(?:[\w-&%]+\/)?(?:o\/ASIN|dp|ASIN|gp\/product|exec\/obidos\/ASIN)\/)|(?:amzn\.com\/))([A-Z0-9]{10})(?:[^"]+)?#';
+        const amzn_asin_pattern  = '#(?:(http|https):\/\/)?(?:www\.)?(?:(?:amazon\.com/(?:[\w-&%]+\/)?(?:o\/ASIN|dp|ASIN|gp\/product|exec\/obidos\/ASIN)\/)|(?:amzn\.com\/))([A-Z0-9]{10})(?:[^"]+)?#';
 
         /**
          * Regular expression
@@ -43,7 +43,7 @@ if(!class_exists('WAALG'))
          * @var string
          * @see link_replacer
          */
-        const amzn_keyw_pattern = '#(?:http:\/\/)?(?:www\.)?(?:amazon\.)(?:com\/)(?:(?:gp\/search\/)|(?:s\/))(?:[^"]*)(?:keywords=)([^"&]*)(?:[^"]*)?#';
+        const amzn_keyw_pattern = '#(?:(http|https):\/\/)?(?:www\.)?(?:amazon\.)(?:com\/)(?:(?:gp\/search\/)|(?:s\/))(?:[^"]*)(?:keywords=)([^"&]*)(?:[^"]*)?#';
         
         /**
          * Construct the plugin object
@@ -233,7 +233,7 @@ if(!class_exists('WAALG'))
          * @see link_replacer
          */
         private function asin_url_replacer($match) {
-            $asin = $match[1];
+            $asin = $match[2];
             $new_url = 'http://a-fwd.com/asin-com='.$asin;
             // Append tracking ids for every country specified
             $id_list = get_option('waalg_affilate_id');
@@ -256,7 +256,7 @@ if(!class_exists('WAALG'))
          * @see link_replacer
          */
         private function keyw_url_replacer($match) {
-            $keywords = $match[1];
+            $keywords = $match[2];
             $new_url = 'http://a-fwd.com/s='.$keywords;
             // Append tracking ids for every country specified
             $id_list = get_option('waalg_affilate_id');

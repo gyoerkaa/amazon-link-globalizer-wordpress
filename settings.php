@@ -1,7 +1,7 @@
 <?php defined('ABSPATH') or die('Restriced Access'); ?>
 
 <div class="wrap">
-    <h2>Amazon Affiliate Settings</h2>
+    <h2>Amazon Settings</h2>
     <form method="post" action="options.php"> 
         <?php settings_fields('waalg-group');?>
         <?php do_settings_sections('waalg-group');?>
@@ -9,7 +9,7 @@
             <tr valign="top">
                 <th scope="row">
                     <label for="waalg_enable_asin">
-                        Replace Amazon links containing an ASIN
+                        Replace Amazon links to a product (containing an ASIN)
                     </label>
                 </th>
                 <td>
@@ -18,6 +18,7 @@
                          id="waalg_enable_asin"
                          value="1"
                          <?php checked(get_option('waalg_enable_asin', 1), 1);?> />
+                  <br/><br/>Example: https://www.amazon.com/gp/product/B018FK66TU/
                 </td>
             </tr>
             <tr valign="top">
@@ -32,12 +33,13 @@
                          id="waalg_enable_keyw"
                          value="1"
                          <?php checked(get_option('waalg_enable_keyw', 1), 1);?> />
+		                  <br/><br/>Example: https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Dmovies-tv&amp;field-keywords=star+wars
                 </td>
             </tr>
             <tr valign="top">
                 <th scope="row">
                     <label for="waalg_affilate_id">
-                        ASIN
+                        Associates ID<br/>(optional)
                     </label>
                 </th>
                 <td>
@@ -49,7 +51,7 @@
             <tr valign="top">
                 <th scope="row">
                     <label for="waalg_fallback">
-                      Fallback URL
+                      Fallback URL<br/>(optional)
                     </label>
                 </th>
                 <td>
@@ -61,7 +63,7 @@
             <tr valign="top">
                 <th scope="row">
                     <label for="waalg_ascsubtag">
-                      Associate Sub-Tag
+                      Associate Sub-Tag<br/>(optional)
                     </label>
                 </th>
                 <td>
@@ -74,7 +76,7 @@
             <tr valign="top">
                 <th scope="row">
                     <label for="waalg_add_url">
-                      Additional URL parameters
+                      Additional URL parameters<br/>(optional)
                     </label>
                 </th>
                 <td>
@@ -90,7 +92,7 @@
 </div>
 
 <?php
-include 'amazon-link-globalizer.php';
+include_once 'amazon-link-globalizer.php';
 
 function generate_fallback_options()
 {
